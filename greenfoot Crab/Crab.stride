@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Crab" extends="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+        <import target="java.awt.Color" enable="true"/>
+    </imports>
+    <implements/>
+    <fields>
+        <variable access="private" type="int" name="Zombiecrab" enable="true"/>
+        <variable access="private" type="int" name="TodesortX" enable="true"/>
+        <variable access="private" type="int" name="TodesortY" enable="true"/>
+        <variable access="private" type="int" name="TageSeitMahlzeit" enable="true"/>
+        <variable access="private" type="int" name="TageseitTod" enable="true"/>
+    </fields>
+    <constructors/>
+    <methods>
+        <method access="public" type="void" name="act" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <call expression="move(5)" expression-java="move(5)" enable="true"/>
+                <if condition="isAtEdge()" condition-java="isAtEdge()" enable="true">
+                    <ifStatements>
+                        <call expression="turn(Greenfoot.getRandomNumber(90)-45)" expression-java="turn(Greenfoot.getRandomNumber(90) - 45)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isTouching(starfish.class)" condition-java="isTouching(starfish.class)" enable="true">
+                    <ifStatements>
+                        <variable type="World" name="myworld" enable="true"/>
+                        <assign dest="myworld" dest-java="myworld" src="getWorld()" src-java="getWorld()" enable="true"/>
+                        <call expression="myworld.addObject(new Crab(),Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="myworld.addObject( new Crab(), Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isTouching(starfish.class)" condition-java="isTouching(starfish.class)" enable="true">
+                    <ifStatements>
+                        <call expression="removeTouching(starfish.class)" expression-java="removeTouching(starfish.class)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isTouching(worm.class)" condition-java="isTouching(worm.class)" enable="true">
+                    <ifStatements>
+                        <assign dest="TodesortX" dest-java="TodesortX" src="getX()" src-java="getX()" enable="true"/>
+                        <assign dest="TodesortY" dest-java="TodesortY" src="getY()" src-java="getY()" enable="true"/>
+                        <assign dest="TageseitTod" dest-java="TageseitTod" src="TageseitTod+1" src-java="TageseitTod + 1" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="TageseitTod&gt;0" condition-java="TageseitTod &gt; 0" enable="true">
+                    <ifStatements>
+                        <assign dest="Zombiecrab" dest-java="Zombiecrab" src="Zombiecrab+1" src-java="Zombiecrab + 1" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Zombiecrab&gt;0" condition-java="Zombiecrab &gt; 0" enable="true">
+                    <ifStatements>
+                        <call expression="getWorld().addObject(new Crab(),TodesortX,TodesortY)" expression-java="getWorld().addObject( new Crab(), TodesortX, TodesortY)" enable="true"/>
+                        <assign dest="Zombiecrab" dest-java="Zombiecrab" src="0" src-java="0" enable="true"/>
+                        <assign dest="TageseitTod" dest-java="TageseitTod" src="0" src-java="0" enable="true"/>
+                    </ifStatements>
+                </if>
+                <assign dest="TageSeitMahlzeit" dest-java="TageSeitMahlzeit" src="TageSeitMahlzeit+1" src-java="TageSeitMahlzeit + 1" enable="true"/>
+                <if condition="TageSeitMahlzeit==300" condition-java="TageSeitMahlzeit == 300" enable="true">
+                    <ifStatements>
+                        <call expression="getWorld().removeObject(this)" expression-java="getWorld().removeObject(this)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+    </methods>
+</class>

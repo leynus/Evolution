@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="CrabWorld" extends="World" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+        <import target="java.awt.Color" enable="true"/>
+    </imports>
+    <implements/>
+    <fields/>
+    <constructors>
+        <constructor access="public" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <delegate target="super" params="600,400,1" params-java="600, 400, 1"/>
+            <body>
+                <call expression="prepare()" expression-java="prepare()" enable="true"/>
+            </body>
+        </constructor>
+    </constructors>
+    <methods>
+        <method access="private" type="void" name="prepare" enable="true">
+            <javadoc xml:space="preserve">Prepare the world for the start of the program.
+That is: create the initial objects and add them to the world.</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Crab" name="crab" value="new Crab()" value-java=" new Crab()" enable="true"/>
+                <call expression="addObject(crab,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(crab, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="Crab" name="crab2" value="new Crab()" value-java=" new Crab()" enable="true"/>
+                <call expression="addObject(crab2,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(crab2, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="Crab" name="crab3" value="new Crab()" value-java=" new Crab()" enable="true"/>
+                <call expression="addObject(crab3,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(crab3, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <call expression="crab3.setLocation(Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="crab3.setLocation(Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <call expression="crab3.setLocation(Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="crab3.setLocation(Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="lobster" name="lobster" value="new lobster()" value-java=" new lobster()" enable="true"/>
+                <call expression="addObject(lobster,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(lobster, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="lobster" name="lobster2" value="new lobster()" value-java=" new lobster()" enable="true"/>
+                <call expression="addObject(lobster2,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(lobster2, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="starfish" name="starfish" value="new starfish()" value-java=" new starfish()" enable="true"/>
+                <call expression="addObject(starfish,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(starfish, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="starfish" name="starfish2" value="new starfish()" value-java=" new starfish()" enable="true"/>
+                <call expression="addObject(starfish2,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(starfish2, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="starfish" name="starfish3" value="new starfish()" value-java=" new starfish()" enable="true"/>
+                <call expression="addObject(starfish3,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(starfish3, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="lobster" name="lobster3" value="new lobster()" value-java=" new lobster()" enable="true"/>
+                <call expression="addObject(lobster3,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(lobster3, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+                <variable type="worm" name="worm" value="new worm()" value-java=" new worm()" enable="true"/>
+                <call expression="addObject(worm,Greenfoot.getRandomNumber(560),Greenfoot.getRandomNumber(560))" expression-java="addObject(worm, Greenfoot.getRandomNumber(560), Greenfoot.getRandomNumber(560))" enable="true"/>
+            </body>
+        </method>
+    </methods>
+</class>

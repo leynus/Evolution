@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="worm" extends="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+        <import target="java.awt.Color" enable="true"/>
+    </imports>
+    <implements/>
+    <fields>
+        <variable access="private" type="int" name="Todesort" enable="true"/>
+        <variable access="private" type="int" name="tageSeitMahlzeit" enable="true"/>
+        <variable access="private" type="int" name="Zombiecrab" enable="true"/>
+        <variable access="private" type="int" name="TodesortCrabX" enable="true"/>
+        <variable access="private" type="int" name="TodesortCrabY" enable="true"/>
+        <variable access="private" type="int" name="ToteCrab" enable="true"/>
+    </fields>
+    <constructors/>
+    <methods>
+        <method access="public" type="void" name="act" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <if condition="Greenfoot.isKeyDown(&quot;left&quot;)" condition-java="Greenfoot.isKeyDown(&quot;left&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="turn(-4)" expression-java="turn(-4)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;right&quot;)" condition-java="Greenfoot.isKeyDown(&quot;right&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="turn(4)" expression-java="turn(4)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;up&quot;)&amp;&amp;tageSeitMahlzeit&lt;300" condition-java="Greenfoot.isKeyDown(&quot;up&quot;) &amp;&amp; tageSeitMahlzeit &lt; 300" enable="true">
+                    <ifStatements>
+                        <call expression="move(5)" expression-java="move(5)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;down&quot;)&amp;&amp;tageSeitMahlzeit&lt;300" condition-java="Greenfoot.isKeyDown(&quot;down&quot;) &amp;&amp; tageSeitMahlzeit &lt; 300" enable="true">
+                    <ifStatements>
+                        <call expression="move(-5)" expression-java="move(-5)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isTouching(starfish.class)" condition-java="isTouching(starfish.class)" enable="true">
+                    <ifStatements>
+                        <assign dest="tageSeitMahlzeit" dest-java="tageSeitMahlzeit" src="0" src-java="0" enable="true"/>
+                        <call expression="removeTouching(starfish.class)" expression-java="removeTouching(starfish.class)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isTouching(lobster.class)" condition-java="isTouching(lobster.class)" enable="true">
+                    <ifStatements>
+                        <assign dest="tageSeitMahlzeit" dest-java="tageSeitMahlzeit" src="0" src-java="0" enable="true"/>
+                        <call expression="removeTouching(lobster.class)" expression-java="removeTouching(lobster.class)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isTouching(Crab.class)" condition-java="isTouching(Crab.class)" enable="true">
+                    <ifStatements>
+                        <assign dest="tageSeitMahlzeit" dest-java="tageSeitMahlzeit" src="0" src-java="0" enable="true"/>
+                        <call expression="removeTouching(Crab.class)" expression-java="removeTouching(Crab.class)" enable="true"/>
+                        <assign dest="Zombiecrab" dest-java="Zombiecrab" src="Zombiecrab+1" src-java="Zombiecrab + 1" enable="true"/>
+                        <assign dest="TodesortCrabX" dest-java="TodesortCrabX" src="getX()" src-java="getX()" enable="true"/>
+                        <assign dest="TodesortCrabY" dest-java="TodesortCrabY" src="getY()" src-java="getY()" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Zombiecrab&gt;0" condition-java="Zombiecrab &gt; 0" enable="true">
+                    <ifStatements>
+                        <assign dest="ToteCrab" dest-java="ToteCrab" src="ToteCrab+1" src-java="ToteCrab + 1" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="ToteCrab==300" condition-java="ToteCrab == 300" enable="true">
+                    <ifStatements>
+                        <call expression="getWorld().addObject(new Crab2(),TodesortCrabX,TodesortCrabY)" expression-java="getWorld().addObject( new Crab2(), TodesortCrabX, TodesortCrabY)" enable="true"/>
+                        <assign dest="Zombiecrab" dest-java="Zombiecrab" src="Zombiecrab-1" src-java="Zombiecrab - 1" enable="true"/>
+                        <assign dest="ToteCrab" dest-java="ToteCrab" src="0" src-java="0" enable="true"/>
+                    </ifStatements>
+                </if>
+                <assign dest="tageSeitMahlzeit" dest-java="tageSeitMahlzeit" src="tageSeitMahlzeit+1" src-java="tageSeitMahlzeit + 1" enable="true"/>
+                <if condition="tageSeitMahlzeit==300" condition-java="tageSeitMahlzeit == 300" enable="true">
+                    <ifStatements>
+                        <assign dest="Todesort" dest-java="Todesort" src="getY()" src-java="getY()" enable="true"/>
+                        <call expression="getWorld().addObject(new Snake(),0,Todesort)" expression-java="getWorld().addObject( new Snake(), 0, Todesort)" enable="true"/>
+                        <call expression="turn(180)" expression-java="turn(180)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+    </methods>
+</class>

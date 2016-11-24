@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Snake" extends="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+        <import target="java.awt.Color" enable="true"/>
+    </imports>
+    <implements/>
+    <fields/>
+    <constructors/>
+    <methods>
+        <method access="public" type="void" name="act" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <call expression="move(5)" expression-java="move(5)" enable="true"/>
+                <if condition="isTouching(worm.class)" condition-java="isTouching(worm.class)" enable="true">
+                    <ifStatements>
+                        <call expression="removeTouching(worm.class)" expression-java="removeTouching(worm.class)" enable="true"/>
+                        <call expression="turn(180)" expression-java="turn(180)" enable="true"/>
+                        <call expression="move(-5)" expression-java="move(-5)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+    </methods>
+</class>
