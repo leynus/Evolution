@@ -30,7 +30,7 @@ Als nächstes haben wir eine worm.class in das Spiel eingefügt, welche vom Spie
             turn(-4);
         }" haben wir die Pfeiltasten belegt. Die obere und untere lässt den Wurm sich vorwärts und rückwärts bewegen. Die rechte und linke Teste lässt den Wurm sich nach rechts oder links drehen. Der Wurm bekam die Eigenschaft, alle anderen Tiere zu fressen. Um das ganze Spiel etwas zufälliger zu machen, stellten wir in der World ein, dass jedes Objekt an einer zufälligen Stelle in der World erscheint.
 
-### **Musik
+### **Musik**
 Wir haben Töne eingefügt, die immer dann erklingen, wenn zwei "Actor" gleicher Klasse aufeinander trafen. Da wir dies allerdings als relativ störend auf Dauer empfanden, haben wir diesen Programmabschnitt wieder entfernt.
 
 ### **Fortpflanzung**
@@ -69,4 +69,22 @@ if (tageSeitMahlzeit == 300) {
 Die Schlange bewegt sich parallel zur X-Achse auf den Wurm zu, frißt diesen und bewegt sich in der gleichen Richtung zurück, in der sie hergekommen ist.
 
 ### **Zombiekrabben**
-- In einer weiteren Programmergänzung behandelten wir das Problem, was mit toten Objekten passiert. Als weitere Spielherausforderung erschufen wir "Zombiekrabben". Crab-Objekte die von der Worm.class gefressen wurden sollten nach einer gewissen Zeit "wiederauferstehen". Hierzu ließen wir den Wurm über die World Objekte aus der Crab2.class entstehen. Diese Class hat die gleichen Eigenschaften, wie die normale Crab.class, "ersteht" aber nicht wieder auf, nachdem sie gefressen wurde. Herausforderung war hier vor allem das Abstimmen von Variablen und if-Schleifen, sodass pro toter Krabbe nur eine "Zombiekrabbe" am Todesort der gefressenen Krabbe entsteht.
+In einer weiteren Programmergänzung behandelten wir das Problem, was mit toten Objekten passiert. Als weitere Spielherausforderung erschufen wir "Zombiekrabben". Crab-Objekte die von der Worm.class gefressen wurden sollten nach einer gewissen Zeit "wiederauferstehen". Dies haben wir mit dem Zusammenspiel von mehreren Variablen und if-Schleifen gemacht. Wenn der Wurm eine Krabbe frisst, wird durch zwei Variablen ("TodesortCrabX" und "TodesortCrabY") festgehalten. Außerdem wird die Variable "Zombiecrab" um 1 erhöht. Wenn diese Variable größer als 0 ist, beginnt eine zweite Variable ("ToteCrab") hochzuzählen. Wenn diese bei dem Wert 200 angelangt ist, wird der World ein Befehl gegeben, eine Crab2.class an dem vorher bestimmten Todesort einzufügen. Die Variable "Zombiecrab" wird um 1 subtrahiert und "ToteCrab" wird auf 0 zurückgesetzt.
+private int Zombiecrab;
+    private int TodesortCrabX;
+    private int TodesortCrabY;
+    private int ToteCrab
+removeTouching(Crab.class);
+            Zombiecrab = Zombiecrab + 1;
+            TodesortCrabX = getX();
+            TodesortCrabY = getY();
+        }
+        if (Zombiecrab > 0) {
+            ToteCrab = ToteCrab + 1;
+        }
+        if (ToteCrab == 200) {
+            getWorld().addObject( new Crab2(), TodesortCrabX, TodesortCrabY);
+            Zombiecrab = Zombiecrab - 1;
+            ToteCrab = 0;
+        }
+Gäbe es nur ein Objekt der Crab.class, hätte man auch mit einer booleanschen Variable arbeiten könne (True, wenn die worm.class die Crab.class berührt hätte). Da es aber mehrere Krabben gibt, haben wir dieses Problem wie oben beschrieben gelöst.
