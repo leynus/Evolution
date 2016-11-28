@@ -54,8 +54,19 @@ if (isTouching(starfish.class)) {
         }
 
 ### **Die Schlange**
+Um unser Programm mehr mit einem Spiel und der damit verbundenen Leistung in Verbindung zu bringen, haben wir eine Verlust-Simulation eingeführt. Eine Schlange frisst den Wurm, wenn dieser einige Zeit lang keine Nahrung mehr zu sich genommen hat. Um dies zu erreichen, haben wir der worm.class befohlen, dass sie sich nur bewegen kann, wenn ihre Hungervariable ("tageSeitMahlzeit") unter dem Wert 300 liegt. Wenn dieser Wert erreicht ist, kann sie sich nur noch drehen und sie gibt ein Signal an die World, welche daraufhin eine Snake.class auf die Position X=0 und der selben Position Y, wie die der worm.class eingeführt. Diese haben wir durch eine Variable bestimmt, welche die Y-Koordinate beim Erreichen des Hungerlevels (tageSeitMahlzeit=300) misst.
+private int tageSeitMahlzeit;
+    private int Todesort
+if (Greenfoot.isKeyDown("up") && tageSeitMahlzeit < 300) {
+            move(5);
+        }
+if (tageSeitMahlzeit == 300) {
+            Todesort = getY();
+            getWorld().addObject( new Snake(), 0, Todesort);
+        }
+    }
+}
+Die Schlange bewegt sich parallel zur X-Achse auf den Wurm zu, frißt diesen und bewegt sich in der gleichen Richtung zurück, in der sie hergekommen ist.
 
-
-## **Weiteres**
-- Um unser Programm mehr mit einem Spiel und der damit verbundenen Leistung in Verbindung zu bringen, haben wir eine Verlust-Simulation eingeführt. Eine Schlange frisst den Wurm, wenn dieser einige Zeit lang keine Nahrung mehr zu sich genommen hat. Anschließend erscheint ein "Game Over"-Bild, welches wir erarbeiteten.
+### **Zombiekrabben**
 - In einer weiteren Programmergänzung behandelten wir das Problem, was mit toten Objekten passiert. Als weitere Spielherausforderung erschufen wir "Zombiekrabben". Crab-Objekte die von der Worm.class gefressen wurden sollten nach einer gewissen Zeit "wiederauferstehen". Hierzu ließen wir den Wurm über die World Objekte aus der Crab2.class entstehen. Diese Class hat die gleichen Eigenschaften, wie die normale Crab.class, "ersteht" aber nicht wieder auf, nachdem sie gefressen wurde. Herausforderung war hier vor allem das Abstimmen von Variablen und if-Schleifen, sodass pro toter Krabbe nur eine "Zombiekrabbe" am Todesort der gefressenen Krabbe entsteht.
