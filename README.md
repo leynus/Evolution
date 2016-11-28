@@ -42,7 +42,19 @@ if (isTouching(starfish.class)) {
             removeTouching(starfish.class);
          
 ### **Einführung von Hunger**
-Mit der Einführung von Variablen eröffneten sich uns neue Möglichkeiten um Zähler einzubauen. Wir konnten jetzt den Faktor Zeit in unser Spiel einbauen. Wir haben einen Hungerwert eingeführt, der ein Objekt aus der World entfernt, wenn es zu lang kein anderes Objekt mehr gefressen (aus der World entfernt) hat.
+Mit der Einführung von Variablen eröffneten sich uns neue Möglichkeiten um Zähler einzubauen. Wir konnten jetzt den Faktor Zeit in unser Spiel einbauen. Wir haben einen Hungerwert eingeführt, der ein Objekt aus der World entfernt, wenn es zu lang kein anderes Objekt mehr gefressen (aus der World entfernt) hat. Dazu stellten wir für jedes Objekt einen Zähler (eine Variable, die mit jeder Schleife +1 hochzählt) ein, der zurückgesetzt wird, wenn es ein anderes Objekt aus der World entfernt. Wenn dieser Zähler einen bestimmten Wert erreicht, gibt das Objekt der World den Befehl, dieses Objekt zu entfernen.
+private int TageSeitMahlzeit
+TageSeitMahlzeit = TageSeitMahlzeit + 1
+if (TageSeitMahlzeit == 300) {
+            getWorld().removeObject(this);
+        }
+if (isTouching(starfish.class)) {
+            removeTouching(starfish.class);
+            TageSeitMahlzeit = 0;
+        }
+
+### **Die Schlange**
+
 
 ## **Weiteres**
 - Um unser Programm mehr mit einem Spiel und der damit verbundenen Leistung in Verbindung zu bringen, haben wir eine Verlust-Simulation eingeführt. Eine Schlange frisst den Wurm, wenn dieser einige Zeit lang keine Nahrung mehr zu sich genommen hat. Anschließend erscheint ein "Game Over"-Bild, welches wir erarbeiteten.
