@@ -28,19 +28,20 @@ Unser vorläufiges Ziel war es nun, eine Art Evolutionssimulation zu erstellen. 
 Als nächstes haben wir eine worm.class in das Spiel eingefügt, welche vom Spieler gesteuert werden soll. Mit Befehlen, wie zum Beispiel "{
         if (Greenfoot.isKeyDown("left")) {
             turn(-4);
-        }" haben wir die Pfeiltasten belegt. Die obere und untere lässt den Wurm sich vorwärts und rückwärts bewegen. Die rechte und linke Teste lässt den Wurm sich nach rechts oder links drehen. Der Wurm bekam die Eigenschaft, alle anderen Tiere zu fressen. 
+        }" haben wir die Pfeiltasten belegt. Die obere und untere lässt den Wurm sich vorwärts und rückwärts bewegen. Die rechte und linke Teste lässt den Wurm sich nach rechts oder links drehen. Der Wurm bekam die Eigenschaft, alle anderen Tiere zu fressen. Um das ganze Spiel etwas zufälliger zu machen, stellten wir in der World ein, dass jedes Objekt an einer zufälligen Stelle in der World erscheint.
 
-
-### **Dokument 6**
-Nun versuchten wir eine Nahrungskette zu programmieren, indem verschiedene "Actor" in die World eingefügt haben und ihnen den Befehl gaben, andere "Actor" beim zusammentreffen aus der World zu entfernen.
-
-### **Dokument 7**
+### **Musik
 Wir haben Töne eingefügt, die immer dann erklingen, wenn zwei "Actor" gleicher Klasse aufeinander trafen. Da wir dies allerdings als relativ störend auf Dauer empfanden, haben wir diesen Programmabschnitt wieder entfernt.
 
-### **Dokument 8**
-Neue Objekte zu erzeugen stand weiterhin im Fokus unserer Anstrengungen. Wir versuchten eine Art Fortpflanzung einzuführen, indem wir immer ein neues Objekt in die World einfügten, wenn zwei gleiche Objekte aufeinandertrafen. Dies führte allerdings zu einem unkontrollierten, exponentiellen Wachstum (auch Crab-Bomb genannt). Wir mussten also wietere "Umweltfaktoren" hinzufügen. In diesem Zusammenhang kamen wir auf die Idee, den Zuschauer Spieler werden zu lassen und ihm damit Einfluss auf das Geschehen gaben. Wir fügten eine Worm.class ein, welche vom Zuschauer mit den Pfeiltasten gesteuert wird und die Funktion hat, jedes andere Objekt zu fressen (aus der World zu entfernen).
-
-### **Dokument 9**
+### **Fortpflanzung**
+Neue Objekte zu erzeugen stand weiterhin im Fokus unserer Anstrengungen. Wir versuchten eine Art Fortpflanzung einzuführen, indem wir immer ein neues Objekt in die World einfügten, wenn zwei gleiche Objekte aufeinandertrafen. Dies führte allerdings zu einem unkontrollierten, exponentiellen Wachstum (auch Crab-Bomb genannt). Wir haben dieses Problem gelöst, indem wir immer ein neues Objekt eingeführt haben, wenn ein Objekt ein anderes frisst (mit Ausnahme von der worm.class). Dazu gaben wir den Befehl an die World, dass immer wenn ein Objekt ein anderes entfernt, ein neuer Objekt mit der gleichen Klasse wie die des Entfernenden einzufügen. Dies haben wir mit folgendem Programmabschnitt gemacht:
+if (isTouching(starfish.class)) {
+            World myworld;
+            myworld = getWorld();
+            myworld.addObject( new Crab(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+            removeTouching(starfish.class);
+         
+### **Einführung von Hunger**
 Mit der Einführung von Variablen eröffneten sich uns neue Möglichkeiten um Zähler einzubauen. Wir konnten jetzt den Faktor Zeit in unser Spiel einbauen. Wir haben einen Hungerwert eingeführt, der ein Objekt aus der World entfernt, wenn es zu lang kein anderes Objekt mehr gefressen (aus der World entfernt) hat.
 
 ## **Weiteres**
